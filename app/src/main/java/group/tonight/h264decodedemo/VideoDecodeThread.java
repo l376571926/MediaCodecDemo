@@ -46,22 +46,26 @@ public class VideoDecodeThread extends Thread implements Runnable {
                     break;
                 }
             }
-                /*
-                东风破
-                视频编码器 run: {track-id=1, level=16, mime=video/avc, profile=8, language=und, display-width=288, csd-1=java.nio.HeapByteBuffer[pos=0 lim=9 cap=9], durationUs=312960000, display-height=216, width=288, max-input-size=20658, frame-rate=25, height=216, csd-0=java.nio.HeapByteBuffer[pos=0 lim=30 cap=30]}
+            if (mVideoTrackIndex == -1) {
+                mMediaExtractor.release();
+                return;
+            }
+            /*
+            东风破
+            视频编码器 run: {track-id=1, level=16, mime=video/avc, profile=8, language=und, display-width=288, csd-1=java.nio.HeapByteBuffer[pos=0 lim=9 cap=9], durationUs=312960000, display-height=216, width=288, max-input-size=20658, frame-rate=25, height=216, csd-0=java.nio.HeapByteBuffer[pos=0 lim=30 cap=30]}
 
-                东风破——单声道
-                视频编码器 run: {track-id=1, level=8, mime=video/avc, profile=8, language=und, color-standard=4, display-width=320, csd-1=java.nio.HeapByteBuffer[pos=0 lim=10 cap=10], color-transfer=3, durationUs=308333333, display-height=240, width=320, color-range=2, max-input-size=11025, frame-rate=15, height=240, csd-0=java.nio.HeapByteBuffer[pos=0 lim=32 cap=32]}
+            东风破——单声道
+            视频编码器 run: {track-id=1, level=8, mime=video/avc, profile=8, language=und, color-standard=4, display-width=320, csd-1=java.nio.HeapByteBuffer[pos=0 lim=10 cap=10], color-transfer=3, durationUs=308333333, display-height=240, width=320, color-range=2, max-input-size=11025, frame-rate=15, height=240, csd-0=java.nio.HeapByteBuffer[pos=0 lim=32 cap=32]}
 
-                江南夜
-                视频编码器 run: {max-bitrate=21337936, track-id=1, level=4096, mime=video/avc, profile=8, bitrate=6066240, language=und, display-width=1920, csd-1=java.nio.HeapByteBuffer[pos=0 lim=9 cap=9], durationUs=281014066, display-height=1080, width=1920, max-input-size=400705, frame-rate=30, height=1080, csd-0=java.nio.HeapByteBuffer[pos=0 lim=29 cap=29]}
+            江南夜
+            视频编码器 run: {max-bitrate=21337936, track-id=1, level=4096, mime=video/avc, profile=8, bitrate=6066240, language=und, display-width=1920, csd-1=java.nio.HeapByteBuffer[pos=0 lim=9 cap=9], durationUs=281014066, display-height=1080, width=1920, max-input-size=400705, frame-rate=30, height=1080, csd-0=java.nio.HeapByteBuffer[pos=0 lim=29 cap=29]}
 
-                逍遥叹
-                视频编码器 run: {max-bitrate=1498272, track-id=1, level=1024, mime=video/avc, profile=8, bitrate=671696, language=und, display-width=565, csd-1=java.nio.HeapByteBuffer[pos=0 lim=9 cap=9], durationUs=390880000, display-height=424, width=564, max-input-size=35678, frame-rate=25, height=424, csd-0=java.nio.HeapByteBuffer[pos=0 lim=35 cap=35]}
+            逍遥叹
+            视频编码器 run: {max-bitrate=1498272, track-id=1, level=1024, mime=video/avc, profile=8, bitrate=671696, language=und, display-width=565, csd-1=java.nio.HeapByteBuffer[pos=0 lim=9 cap=9], durationUs=390880000, display-height=424, width=564, max-input-size=35678, frame-rate=25, height=424, csd-0=java.nio.HeapByteBuffer[pos=0 lim=35 cap=35]}
 
-                六月的雨
-                视频编码器 run: {max-bitrate=1972952, track-id=1, level=256, mime=video/avc, profile=2, bitrate=679184, language=chi, display-width=768, csd-1=java.nio.HeapByteBuffer[pos=0 lim=9 cap=9], durationUs=222488933, display-height=432, width=768, max-input-size=64502, frame-rate=30, height=432, csd-0=java.nio.HeapByteBuffer[pos=0 lim=25 cap=25]}
-                 */
+            六月的雨
+            视频编码器 run: {max-bitrate=1972952, track-id=1, level=256, mime=video/avc, profile=2, bitrate=679184, language=chi, display-width=768, csd-1=java.nio.HeapByteBuffer[pos=0 lim=9 cap=9], durationUs=222488933, display-height=432, width=768, max-input-size=64502, frame-rate=30, height=432, csd-0=java.nio.HeapByteBuffer[pos=0 lim=25 cap=25]}
+             */
             final MediaFormat videoFormat = mMediaExtractor.getTrackFormat(mVideoTrackIndex);
             Log.e(TAG, "视频编码器 run: " + videoFormat.toString());
             String videoMime = videoFormat.getString(MediaFormat.KEY_MIME);

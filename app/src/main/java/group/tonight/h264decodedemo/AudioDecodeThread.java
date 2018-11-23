@@ -51,37 +51,41 @@ public class AudioDecodeThread extends Thread implements Runnable {
                     break;
                 }
             }
-                /*
-                东风破-->采样率： 22050，声道数：2，正常播放采样率：22050
-                {max-bitrate=32000, sample-rate=22050, durationUs=312912108, channel-count=2, language=und, bitrate=31986, max-input-size=267, csd-0=java.nio.HeapByteBuffer[pos=0 lim=2 cap=2]}
+            if (mAudioTrackIndex == -1) {
+                mMediaExtractor.release();
+                return;
+            }
+            /*
+            东风破-->采样率： 22050，声道数：2，正常播放采样率：22050
+            {max-bitrate=32000, sample-rate=22050, durationUs=312912108, channel-count=2, language=und, bitrate=31986, max-input-size=267, csd-0=java.nio.HeapByteBuffer[pos=0 lim=2 cap=2]}
 
-                东风破——单声道-->采样率： 44100，声道数：1，正常播放采样率：44100
-                {max-bitrate=37088, sample-rate=44100, durationUs=308337777, channel-count=1, language=und, bitrate=31999, max-input-size=156, csd-0=java.nio.HeapByteBuffer[pos=0 lim=2 cap=2]}
+            东风破——单声道-->采样率： 44100，声道数：1，正常播放采样率：44100
+            {max-bitrate=37088, sample-rate=44100, durationUs=308337777, channel-count=1, language=und, bitrate=31999, max-input-size=156, csd-0=java.nio.HeapByteBuffer[pos=0 lim=2 cap=2]}
 
-                江南夜-->采样率： 48000，声道数：2，正常播放采样率：48000
-                {max-bitrate=141840, sample-rate=48000, durationUs=281088000, channel-count=2, language=und, bitrate=127952, max-input-size=597, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
+            江南夜-->采样率： 48000，声道数：2，正常播放采样率：48000
+            {max-bitrate=141840, sample-rate=48000, durationUs=281088000, channel-count=2, language=und, bitrate=127952, max-input-size=597, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
 
-                逍遥叹-->采样率： 22050，声道数：2，正常播放采样率：44100
-                {max-bitrate=73024, sample-rate=22050, durationUs=389537959, channel-count=2, language=und, bitrate=62104, max-input-size=573, csd-0=java.nio.HeapByteBuffer[pos=0 lim=7 cap=7]}
+            逍遥叹-->采样率： 22050，声道数：2，正常播放采样率：44100
+            {max-bitrate=73024, sample-rate=22050, durationUs=389537959, channel-count=2, language=und, bitrate=62104, max-input-size=573, csd-0=java.nio.HeapByteBuffer[pos=0 lim=7 cap=7]}
 
-                六月的雨-->采样率： 22050，声道数：2，正常播放采样率：44100
-                {max-bitrate=103104, sample-rate=22050, durationUs=222632925, channel-count=2, language=chi, bitrate=95920, max-input-size=853, csd-0=java.nio.HeapByteBuffer[pos=0 lim=7 cap=7]}
+            六月的雨-->采样率： 22050，声道数：2，正常播放采样率：44100
+            {max-bitrate=103104, sample-rate=22050, durationUs=222632925, channel-count=2, language=chi, bitrate=95920, max-input-size=853, csd-0=java.nio.HeapByteBuffer[pos=0 lim=7 cap=7]}
 
-                三国恋-->采样率： 24000，声道数：2，正常播放采样率：48000
-                {max-bitrate=146272, sample-rate=24000, durationUs=260096000, channel-count=2, language=chi, bitrate=127760, max-input-size=994, csd-0=java.nio.HeapByteBuffer[pos=0 lim=7 cap=7]}
+            三国恋-->采样率： 24000，声道数：2，正常播放采样率：48000
+            {max-bitrate=146272, sample-rate=24000, durationUs=260096000, channel-count=2, language=chi, bitrate=127760, max-input-size=994, csd-0=java.nio.HeapByteBuffer[pos=0 lim=7 cap=7]}
 
-                暧昧-->采样率： 44100，声道数：2，正常播放采样率：44100
-                {max-bitrate=151792, sample-rate=44100, durationUs=312331609, channel-count=2, language=und, bitrate=127184, max-input-size=613, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
+            暧昧-->采样率： 44100，声道数：2，正常播放采样率：44100
+            {max-bitrate=151792, sample-rate=44100, durationUs=312331609, channel-count=2, language=und, bitrate=127184, max-input-size=613, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
 
-                爱妃-->采样率： 44100，声道数：2，正常播放采样率：44100
-                {max-bitrate=133512, sample-rate=44100, durationUs=261224489, channel-count=2, language=und, bitrate=96296, max-input-size=518, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
+            爱妃-->采样率： 44100，声道数：2，正常播放采样率：44100
+            {max-bitrate=133512, sample-rate=44100, durationUs=261224489, channel-count=2, language=und, bitrate=96296, max-input-size=518, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
 
-                我好像在哪见过你-->采样率： 44100，声道数：2，正常播放采样率：44100
-                {max-bitrate=109032, sample-rate=44100, durationUs=298840816, channel-count=2, language=und, bitrate=89800, max-input-size=484, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
+            我好像在哪见过你-->采样率： 44100，声道数：2，正常播放采样率：44100
+            {max-bitrate=109032, sample-rate=44100, durationUs=298840816, channel-count=2, language=und, bitrate=89800, max-input-size=484, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
 
-                高尚-->采样率： 44100，声道数：2，正常播放采样率：44100
-                {max-bitrate=135456, sample-rate=44100, durationUs=388864580, channel-count=2, language=und, bitrate=96456, max-input-size=520, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
-                 */
+            高尚-->采样率： 44100，声道数：2，正常播放采样率：44100
+            {max-bitrate=135456, sample-rate=44100, durationUs=388864580, channel-count=2, language=und, bitrate=96456, max-input-size=520, csd-0=java.nio.HeapByteBuffer[pos=0 lim=5 cap=5]}
+             */
             MediaFormat format = mMediaExtractor.getTrackFormat(mAudioTrackIndex);
             Log.e(TAG, "音频编码器 run: " + format.toString());
             String audioMime = format.getString(MediaFormat.KEY_MIME);//audio/mp4a-latm
@@ -94,7 +98,10 @@ public class AudioDecodeThread extends Thread implements Runnable {
             Log.e(TAG, "通道数： " + channelCount);
             String language = format.getString(MediaFormat.KEY_LANGUAGE);//und
             Log.e(TAG, "语言： " + language);
-            int aacProfile = format.getInteger(MediaFormat.KEY_AAC_PROFILE);//2
+            int aacProfile = 0;
+            if (format.containsKey(MediaFormat.KEY_AAC_PROFILE)) {
+                aacProfile = format.getInteger(MediaFormat.KEY_AAC_PROFILE);//2
+            }
             Log.e(TAG, "AAC配置类型： " + aacProfile);
             if (MediaCodecInfo.CodecProfileLevel.AACObjectLC == aacProfile) {
 //                    Log.e(TAG, "run: ");
