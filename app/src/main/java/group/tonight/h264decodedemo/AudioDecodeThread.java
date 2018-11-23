@@ -112,9 +112,9 @@ public class AudioDecodeThread extends Thread implements Runnable {
             mAudioDecoder.configure(format, null, null, 0);
             mAudioDecoder.start();
 
-            int channelConfig = AudioFormat.CHANNEL_IN_MONO;
+            int channelConfig = AudioFormat.CHANNEL_OUT_MONO;
             if (channelCount >= 2) {
-                channelConfig = AudioFormat.CHANNEL_IN_STEREO;
+                channelConfig = AudioFormat.CHANNEL_OUT_STEREO;
             }
             int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
             int minBufferSize = AudioTrack.getMinBufferSize(
