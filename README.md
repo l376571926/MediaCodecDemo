@@ -1,0 +1,2 @@
+# MediaCodecDemo
+MediaCodec、MediaExtractor、AudioTrack使用示例，MediaExtractor分离音视频，MediaCodec解码mp4中的音视频轨道，SurfaceView播放视频，AudioTrack播放音频
